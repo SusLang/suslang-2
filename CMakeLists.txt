@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11.0)
 
-project(Lilac)
+project(Suslang2)
 
 if(UNIX AND NOT APPLE)
     include_directories(~/local/include)
@@ -31,12 +31,15 @@ include_directories(${LLVM_INCLUDE_DIRS})
 add_definitions(${CLANG_DEFINITIONS})
 
 file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS src/*.cpp include/*.h)
+include_directories(cpp-library)
 
 set(CMAKE_CXX_STANDARD 23)
 
 add_link_options(-fsanitize=address,undefined,leak,signed-integer-overflow,bounds)
 
-add_executable(suslang2 src/main.cpp ${SOURCE_FILES})
+add_executable(suslang2 src/main.cpp ${SOURCE_FILES}
+        cpp-library/str/str.h
+        cpp-library/str/str.cpp)
 
 llvm_map_components_to_libnames(LLVM_LIBS
         core

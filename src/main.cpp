@@ -3,8 +3,9 @@
 //
 
 #include <iostream>
+#include "analizer/tokenizer.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Tokenizer t("data/helloworld.sus");
     return 0;
 }
