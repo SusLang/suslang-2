@@ -21,6 +21,7 @@ private:
     TokenKind kind;
     std::string value;
     int line, column;
+
 public:
     Token(TokenKind kind, std::string value, int line = 0, int column = 0) : kind(kind), value(std::move(value)), line(line), column(column) {}
 

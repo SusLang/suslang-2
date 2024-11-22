@@ -13,9 +13,12 @@
 
 class Tokenizer {
 public:
-    Tokenizer(const std::string &source);
+    explicit Tokenizer(const std::string &source);
 private:
     std::vector<Token> tokens;
+    std::string buff;
+    void emplace_back(const std::string& utf8);
+    Token check_token(const std::string& str);
 };
 
 #endif //LILAC_TOKENIZER_H
