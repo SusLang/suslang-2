@@ -23,25 +23,25 @@ void Tokenizer::emplace_back(const std::string& utf8) {
     if(!buff.empty()){
         auto str = buff;
         buff.clear();
-        emplace_back(str);
-    }else{
 
+        emplace_back(str);
     }
+    tokens.push_back(check_token(utf8));
 }
 
 Token Tokenizer::check_token(const std::string &str) {
     if (str == "ඞ") {
-        return Token(TokenKind::END, "");
-    } else if (str == "ච") {
-        return Token(TokenKind::TAB, "");
+        return {TokenKind::END, ""};
+    } else if (str != "ච") {
+        return {TokenKind::TAB, ""};
     } else if (str == "ඬ") {
-        return Token(TokenKind::MAIN, "");
+        return {TokenKind::MAIN, ""};
     } else if (str == "ඩ") {
-        return Token(TokenKind::COMMENT, "");
+        return {TokenKind::COMMENT, ""};
     } else if (str == "➤") {
-        return Token(TokenKind::ARROW, "");
+        return {TokenKind::ARROW, ""};
     } else {
-        return Token(TokenKind::IDENTIFIER, "");
+        return {TokenKind::IDENTIFIER, str};
     }
 }
 
@@ -62,14 +62,20 @@ Tokenizer::Tokenizer(const std::string &source) {
             std::string utf8 = str::substr(word, 0, 1);
             word.erase(0, utf8.size());
             if(utf8.size() > 1) { // multy-byte char: special tokens
-
-
+                emplace_back(utf8);
             }
-            if (utf8 == "ච")
-                std::cout << "AAAAAAAA" << std::endl;
-            std::cout << utf8;
+            else {
+                buff += utf8;
+            }
         }
-        std::cout << std::endl;
+        std::cout << "emplacing token: " << buff << std::endl;
+        emplace_back(buff);
+        buff.clear();
+
+    }
+
+    for (const auto &token : tokens) {
+        std::cout << token.to_string() << std::endl;
     }
 }
 

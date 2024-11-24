@@ -40,6 +40,8 @@ public:
     [[nodiscard]] int get_column() const {
         return column;
     }
+
+    [[nodiscard]] std::string to_string() const;
 };
 
 #endif //SUSLANG2_TOKEN_H
