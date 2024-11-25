@@ -4,9 +4,6 @@
 
 #include <fstream>
 #include <iostream>
-#include <sstream>
-#include <fstream>
-#include <codecvt>
 #include <locale>
 #include "analizer/tokenizer.h"
 #include "str/str.h"
@@ -17,32 +14,33 @@
 #define COMMENT_SUS "ඩ"
 #define FUNC_ARR "➤"
 
+Token check_token(const std::string &str) {
+    if (str == "ඞ")
+        return {END, ""};
+    if (str == "ච")
+        return {TAB, ""};
+    if (str == "ඬ")
+        return {MAIN, ""};
+    if (str == "ඩ")
+        return {COMMENT, ""};
+    if (str == "➤")
+        return {ARROW, ""};
+    return {IDENTIFIER, str};
+
+}
 
 void Tokenizer::emplace_back(const std::string& utf8) {
     // if char buffer is not empty, add it to the tokens
     if(!buff.empty()){
-        auto str = buff;
+        const auto str = buff;
         buff.clear();
 
         emplace_back(str);
     }
-    tokens.push_back(check_token(utf8));
-}
-
-Token Tokenizer::check_token(const std::string &str) {
-    if (str == "ඞ") {
-        return {TokenKind::END, ""};
-    } else if (str != "ච") {
-        return {TokenKind::TAB, ""};
-    } else if (str == "ඬ") {
-        return {TokenKind::MAIN, ""};
-    } else if (str == "ඩ") {
-        return {TokenKind::COMMENT, ""};
-    } else if (str == "➤") {
-        return {TokenKind::ARROW, ""};
-    } else {
-        return {TokenKind::IDENTIFIER, str};
+    if (utf8.empty()) {
+        return;
     }
+    tokens.push_back(check_token(utf8));
 }
 
 
@@ -52,10 +50,7 @@ Tokenizer::Tokenizer(const std::string &source) {
         throw std::runtime_error("Could not open file: " + source);
     }
 
-    /*std::string line;
-    while(file >> line) {
-        std::cout << line << ", size: " << line.size() << std::endl;
-    }*/
+
     std::string word;
     while(file >> word) {
         while(!word.empty()) {
@@ -68,7 +63,6 @@ Tokenizer::Tokenizer(const std::string &source) {
                 buff += utf8;
             }
         }
-        std::cout << "emplacing token: " << buff << std::endl;
         emplace_back(buff);
         buff.clear();
 

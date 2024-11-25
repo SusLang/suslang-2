@@ -18,7 +18,6 @@ private:
     std::vector<Token> tokens;
     std::string buff;
     void emplace_back(const std::string& utf8);
-    Token check_token(const std::string& str);
 };
 
 #endif //LILAC_TOKENIZER_H
