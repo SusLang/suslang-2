@@ -19,10 +19,17 @@ inline std::string tokenkind_str(const TokenKind& t) {
         case TokenKind::TASK: return "TASK";
         case TokenKind::CREWMATE: return "CREWMATE";
         case TokenKind::SUS: return "SUS";
+        case TokenKind::CLEAN: return "CLEAN";
+        case TokenKind::IF_SUS: return "SUS?";
+        case TokenKind::ELSE_CLEAN: return "CLEAN?";
         case TokenKind::EJECT: return "EJECT";
         case TokenKind::MAKE: return "MAKE";
-        case TokenKind::COMMA_AND: return "COMMA_AND";
+        case TokenKind::COMMA: return "COMMA";
         case TokenKind::COLON: return "COLON";
+        case TokenKind::COMPLETE: return "COMPLETE";
+        case TokenKind::REPORT: return "REPORT";
+        case TokenKind::WITH: return "WITH";
+        case TokenKind::DOUBLE_QUOTE: return "DOUBLE_QUOTE";
     }
 }
 

@@ -14,6 +14,33 @@
 #define COMMENT_SUS "ඩ"
 #define FUNC_ARR "➤"
 
+
+Token check_keyword(const std::string& str){
+    if (str == "task")
+        return {TASK, ""};
+    if (str == "crewmate")
+        return {CREWMATE, ""};
+    if (str == "sus")
+        return {SUS, ""};
+    if (str == "clean")
+        return {CLEAN, ""};
+    if (str == "sus?")
+        return {IF_SUS, ""};
+    if (str == "clean?")
+        return {ELSE_CLEAN, ""};
+    if (str == "eject")
+        return {EJECT, ""};
+    if (str == "make")
+        return {MAKE, ""};
+    if (str == "complete")
+        return {COMPLETE, ""};
+    if (str == "report")
+        return {REPORT, ""};
+    if (str == "with")
+        return {WITH, ""};
+    return {IDENTIFIER, str};
+}
+
 Token check_token(const std::string &str) {
     if (str == "ඞ")
         return {END, ""};
@@ -25,7 +52,17 @@ Token check_token(const std::string &str) {
         return {COMMENT, ""};
     if (str == "➤")
         return {ARROW, ""};
-    return {IDENTIFIER, str};
+    if (str == "(")
+        return {OPEN_PAREN, ""};
+    if (str == ")")
+        return {CLOSE_PAREN, ""};
+    if (str == ",")
+        return {COMMA, ""};
+    if (str == ":")
+        return {COLON, ""};
+    if (str == "\"")
+        return {DOUBLE_QUOTE, ""};
+    return check_keyword(str);
 
 }
 

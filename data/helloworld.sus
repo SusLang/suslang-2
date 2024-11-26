@@ -1,3 +1,9 @@
 task ඬ with ➤ number
 චcomplete report with "hello world"ඞ
 චeject 0ඞ
+
+task fibo with crewmate yellow: number ➤ number
+චsus? < yellow 2
+චචeject yellowඞ
+චclean?
+චචeject + complete fibo with - yellow 1 complete fibo with - yellow 2ඞ
