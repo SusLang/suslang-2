@@ -14,6 +14,10 @@
 #define COMMENT_SUS "ඩ"
 #define FUNC_ARR "➤"
 
+inline bool is_special_char(char a) {
+    return a == '"' || a == '(' || a == ')' || a == ',' || a == ':' || a == 'ඞ' || a == 'ච' || a == 'ඬ' || a == '➤';
+}
+
 
 Token check_keyword(const std::string& str){
     if (str == "task")
