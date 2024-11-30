@@ -97,7 +97,7 @@ Tokenizer::Tokenizer(const std::string &source) {
         while(!word.empty()) {
             std::string utf8 = str::substr(word, 0, 1);
             word.erase(0, utf8.size());
-            if(utf8.size() > 1) { // multy-byte char: special tokens
+            if(utf8.size() > 1 || is_special_char(utf8.at(0))) { // multy-byte char: special tokens
                 emplace_back(utf8);
             }
             else {
