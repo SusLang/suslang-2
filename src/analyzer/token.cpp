@@ -2,7 +2,9 @@
 // Created by migouche on 24-Nov-24.
 //
 
-#include "analizer/token.h"
+#include "analyzer/token.h"
+
+using namespace Analyzer;
 
 inline std::string tokenkind_str(const TokenKind& t) {
     switch (t) {

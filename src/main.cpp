@@ -3,9 +3,12 @@
 //
 
 #include <iostream>
-#include "analizer/tokenizer.h"
+
+#include "compiler/compiler.h"
 
 int main() {
-    Tokenizer t("data/helloworld.sus");
+    //Tokenizer t("data/helloworld.sus");
+    Compiler::Compiler c({"data/helloworld.sus"});
+
     return 0;
 }

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <locale>
-#include "analizer/tokenizer.h"
+#include "analyzer/tokenizer.h"
 #include "str/str.h"
 
 #define END_SUS "ඞ"
@@ -14,10 +14,11 @@
 #define COMMENT_SUS "ඩ"
 #define FUNC_ARR "➤"
 
-inline bool is_special_char(char a) {
-    return a == '"' || a == '(' || a == ')' || a == ',' || a == ':' || a == 'ඞ' || a == 'ච' || a == 'ඬ' || a == '➤';
-}
+using namespace Analyzer;
 
+inline bool is_special_char(const char a) {
+    return a == '"' || a == '(' || a == ')' || a == ',' || a == ':';
+}
 
 Token check_keyword(const std::string& str){
     if (str == "task")
@@ -112,5 +113,9 @@ Tokenizer::Tokenizer(const std::string &source) {
     for (const auto &token : tokens) {
         std::cout << token.to_string() << std::endl;
     }
+}
+
+const std::vector<Token> & Tokenizer::get_tokens() const {
+    return tokens;
 }
 
