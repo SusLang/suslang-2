@@ -7,14 +7,17 @@
 #include <vector>
 
 #include "token.h"
-
-#include <vector>
-#include <memory>
-#include <iostream>
-#include <string>
-
+#include "nodes/astdeclaration.h"
 namespace Analyzer {
     // Define AST nodes
+    class AST {
+    private:
+        std::vector<Nodes::ASTDeclaration> declarations;
+        // all code is a list of function / global variable / include declarations
+    public:
+        explicit AST(const std::vector<Token>&);
+
+    };
 
 }
 #endif //LILAC_AST_H
