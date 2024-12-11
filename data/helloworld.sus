@@ -2,6 +2,9 @@ task ඬ with ➤ number
 චcomplete report with "hello world"ඞ
 චeject 0ඞ
 
+task add with crewmate red: number and crewmate black: number ➤ number
+චeject + red blackඞ
+
 task fibo with crewmate yellow: number ➤ number
 චsus? < yellow 2
 චචeject yellowඞ

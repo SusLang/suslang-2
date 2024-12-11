@@ -14,7 +14,6 @@ namespace Analyzer::Nodes {
     class FunctionDeclaration final : public ASTDeclaration {
     public:
         explicit FunctionDeclaration(std::vector<Token>::const_iterator& it);
-
         ~FunctionDeclaration() override = default;
     };
 }
